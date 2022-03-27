@@ -35,6 +35,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_03_24_071956) do
 
   create_table "posts", force: :cascade do |t|
     t.bigint "users_id", null: false
+    t.string "Author"
     t.string "Title"
     t.string "Text"
     t.integer "Comments_Counter", default: 0, null: false
