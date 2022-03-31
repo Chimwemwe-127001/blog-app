@@ -8,6 +8,12 @@ class LikesController < ApplicationController
       post_id: @post.id
     )
 
-    redirect_to "/users/#{@post.users_id}/posts/#{@post.id}", notice: 'Like created' if new_like.save
+    if new_like.save
+      flash[:success] = 'Like saved successfully'
+      redirect_to user_post_path(current_user.id, @post)
+    else
+      render :new
+      flash.now[:error] = 'Like not saved'
+    end
   end
 end
