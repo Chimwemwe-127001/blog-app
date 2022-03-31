@@ -1,3 +1,38 @@
-<h1>User Details</h1>
-<p>My-blog-app/views/users/show.html.erb</p>
-<p>Go to posts <a href="/users/index/posts">here</a></p>
+<div class="container">
+    <div class="card mb-3 border-info mb-3" style="max-width: 900px">
+      <div class="row g-0">
+        <div class="col-md-4">
+          <img src=<%@user.Photo%> class="img-fluid rounded-start">
+        </div>
+        <div class="col-md-8">
+          <div class="card-body">
+            <h5 class="card-title">
+              <h1><%= @user.Name %></h1>
+            </h5>
+            <p class="card-text"><%=  @user.Bio  %></p>
+            <p class="card-text text-end"><small class="text-muted">Number of posts: <%=  @user.Posts_Counter  %></small></p>
+          </div>
+        </div>
+      </div>
+    </div> 
+
+    <div style="margin-bottom: 2rem;">
+      <% @user.recent_posts.each  do |post| %>
+        <% if @user.id === post.users_id %>
+          <div class="c">
+            <div class="card border-info mb-3" style="max-width: 900px;">
+              <div class="card-header bg-info">Post: <%= link_to "#{post.Title}", user_post_path(@user.id, post.id), class:"link-dark" %></div>
+              <div class="card-body text-dark">
+                <h5 class="card-title">Dark card title</h5>
+                <p class="card-text"><%= post.Text %></p>
+                <p class="card-text text-end"><small class="text-muted"> Comments: <%= post.Comments_Counter %> Likes: <%= post.Likes_Counter %> </small></p>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+      <button class="btn btn-outline-info">
+        <%= link_to 'See all Posts', user_posts_path(@user), class:"nav-link"%>
+      </button>
+    </div>
+</div>

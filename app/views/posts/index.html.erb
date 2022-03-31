@@ -1,3 +1,52 @@
-<h1>Post #index by username</h1>
-<p>My-blog-app/views/posts/index.html.erb</p>
-<p>Go back to user <a href="http://localhost:3000/users/index">index</a></p>
+<div class='container'>
+    <div class="card mb-3 border-info mb-3 " style="max-width: 900px;">
+      <div class="row g-0">
+        <div class="col-md-4">
+          <img src=<% @user.Photo%> class="img-fluid rounded-start" alt="...">
+        </div>
+        <div class="col-md-8">
+          <div class="card-body">
+            <h5 class="card-title">
+              <h1><%= @user.Name %></h1>
+            </h5>
+            <p class="card-text"><%=  @user.Bio  %></p>
+            <p class="card-text text-end"><small class="text-muted">Number of posts: <%=  @user.Posts_Counter  %></small></p>
+          </div>
+        </div>
+      </div>
+    </div> 
+
+    <div class='u-detail-rec-posts'>
+        <% @posts.each  do |post| %>
+            <div class="card border-info mb-3" style="max-width: 900px;">
+              <div class="card-header bg-info">Post: <%= link_to "#{post.Title}", user_post_path(@user.id, post.id), class: 'post-link' %></div>
+              <div class="container">
+                <div class="card-body text-dark">
+                  <h5 class="card-title">Dark card title</h5>
+                  <p class="card-text"><%= post.Text %></p>
+                  <p class="card-text text-end"><small class="text-muted"> Likes: <%= post.Likes_Counter %> </small></p>
+                </div>
+              </div>
+
+              <div class="card border-info mb-3" style="width: 840px; margin: 0 auto; margin-bottom: 2rem;">
+                <div class="card-header bg-info">
+                  Comments: <%= post.Comments_Counter %>
+                </div>
+                <ul class="list-group list-group-flush">
+                  <% post.recent_comments.each do |comment| %>
+                      <% if post.id === comment.post_id %>
+                        <li class="list-group-item ">
+                          <%= comment.author.Name %>: <%= comment.Text  %>
+                        </li>
+                      <% end %>
+                  <% end %>
+                </ul>
+              </div>
+            </div>            
+        <% end %>
+
+        <button class="btn btn-outline-info">
+          Pagination
+        </button>
+    </div>
+</div>
