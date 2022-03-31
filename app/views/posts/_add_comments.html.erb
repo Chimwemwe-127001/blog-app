@@ -1,0 +1,10 @@
+<%= form_with url: "/posts/#{@post.id}/comments", scope: :comment do |form| %>
+  <div class="container" style="padding: 2rem; marging-top: 2rem;">
+    <div class="mb-3">
+      <%= form.text_area :Text, placeholder: "Add your comment...", class:"form-control", rows: 5, required: true %>
+    </div>
+    <div>
+      <%= form.submit "Add comment", class:'btn btn-outline-info' %>
+    </div>
+  </div>
+<% end %>

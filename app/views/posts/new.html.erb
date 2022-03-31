@@ -1,0 +1,17 @@
+<h1 class='hello_error'><%= flash[:error] %></h1>
+
+<%= form_with model: @post do |f| %>
+  <div class="card container" style="padding: 3rem;">
+    <div class='mb-3'>
+      <%= f.label :title, class:"form-label" %>
+      <%= f.text_field :Title, class:"form-control" %>
+    </div>
+    <div class='mb-3'>
+      <%= f.label :text, class:"form-label" %>
+      <%= f.text_area :Text, class:"form-control" %>
+    </div>
+    <div>
+      <%= f.submit "Add new post", class:'btn btn-outline-info' %>
+    </div>
+  </div>
+<% end %>

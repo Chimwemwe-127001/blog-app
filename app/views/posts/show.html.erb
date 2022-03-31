@@ -6,20 +6,26 @@
         <h5 class="card-title"><%= @post.Title %></h5>
         <p class="card-text"><%= @post.Text %></p>
         <p class="card-text text-end"><small class="text-muted"> Likes: <%= @post.Likes_Counter %> </small></p>
+        <%= form_with url: "/posts/#{@post.id}/likes", scope: :like do |form| %>
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                <%= form.submit "Like ", class: "btn btn-outline-danger"%>
+            </div>
+        <% end %>
     </div>
     </div>
   
     <div class="card border-info mb-3" style="width: 840px; margin: 0 auto; margin-bottom: 2rem;">
-    <div class="card-header bg-info">
-        Comments: <%= @post.Comments_Counter %>
+        <div class="card-header bg-info">
+            Comments: <%= @post.Comments_Counter %>
+        </div>
+        <ul class="list-group list-group-flush">
+            <% @comments.each do |comment| %>
+                <li class="list-group-item ">
+                    <%= comment.author.Name %>: <%= comment.Text  %>
+                </li>
+            <% end %>
+        </ul>
     </div>
-    <ul class="list-group list-group-flush">
-        <% @comments.each do |comment| %>
-            <li class="list-group-item ">
-                <%= comment.author.Name %>: <%= comment.Text  %>
-            </li>
-        <% end %>
-    </ul>
-    </div>
+    <%= render partial: "add_comments", local: { post: @post } %>
   </div>
 </div>
