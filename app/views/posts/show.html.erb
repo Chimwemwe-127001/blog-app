@@ -1,3 +1,25 @@
-<h1>Lists of Posts for the users</h1>
-<p>My-blog-app/views/posts/show.html.erb</p>
-<p>Go back to user <a href="http://localhost:3000/users/index">index</a></p>
+<div class="container" style="margin: 2rem auto;">
+  <div class="card border-info mb-3" style="max-width: 900px;">
+    <div class="card-header bg-info"><%= @post.Title %> by <%= @post.author.Name %></div>
+    <div class="container">
+    <div class="card-body text-dark">
+        <h5 class="card-title"><%= @post.Title %></h5>
+        <p class="card-text"><%= @post.Text %></p>
+        <p class="card-text text-end"><small class="text-muted"> Likes: <%= @post.Likes_Counter %> </small></p>
+    </div>
+    </div>
+  
+    <div class="card border-info mb-3" style="width: 840px; margin: 0 auto; margin-bottom: 2rem;">
+    <div class="card-header bg-info">
+        Comments: <%= @post.Comments_Counter %>
+    </div>
+    <ul class="list-group list-group-flush">
+        <% @comments.each do |comment| %>
+            <li class="list-group-item ">
+                <%= comment.author.Name %>: <%= comment.Text  %>
+            </li>
+        <% end %>
+    </ul>
+    </div>
+  </div>
+</div>
