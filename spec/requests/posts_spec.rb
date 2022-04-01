@@ -1,9 +1,9 @@
 RSpec.describe 'Posts', type: :request do
   describe 'GET /index' do
     before :each do
-     @user1 = User.create('Name' => 'Amy', 'Bio' => 'bio', 'Photo' => 'Tom.png', 'Posts_Counter' => 0)
+      @user1 = User.create('Name' => 'Amy', 'Bio' => 'bio', 'Photo' => 'Tom.png', 'Posts_Counter' => 0)
     end
-   
+
     before(:each) { get "/users/#{@user1.id}/posts" }
     it 'checks if action returns correct response status' do
       expect(response).to have_http_status(:ok)
