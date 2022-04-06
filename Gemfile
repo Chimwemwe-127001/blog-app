@@ -5,6 +5,8 @@ ruby '2.7.4'
 
 gem 'bullet'
 
+gem 'devise'
+
 gem 'rails-controller-testing'
 
 gem 'rubocop', '>= 1.0', '< 2.0'
