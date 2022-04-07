@@ -42,10 +42,16 @@
               <div class="card-header bg-info">Post: <%= link_to "#{post.Title}", user_post_path(@user.id, post.id), class:"link-dark" %></div>
               <div class="card-body text-dark">
                 <p class="card-text"><%= post.Text %></p>
-                <p class="card-text text-end"><small class="text-muted"> Comments: <%= post.Comments_Counter %> Likes: <%= post.Likes_Counter %> </small></p>
-                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                  <%= button_to "Delete Post", post, method: :delete , class: "btn btn-outline-danger"%>
-                </div>
+                <p class="card-text text-end">
+                  <small class="text-muted"> 
+                    Comments: <%= post.Comments_Counter %> Likes: <%= post.Likes_Counter %> 
+                  </small>
+                </p>
+                <% if can? :destroy, post %>
+                  <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                    <%= button_to "Delete Post", post, method: :delete , class: "btn btn-outline-danger"%>
+                  </div>
+                <% end %>
               </div>
             </div>
           </div>
