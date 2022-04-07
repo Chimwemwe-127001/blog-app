@@ -9,7 +9,7 @@ class Post < ApplicationRecord
   after_destroy :update_posts_counter_after_destroy
 
   def recent_comments
-    comments.order('created_at Desc').limit(5)
+    comments.order('created_at Desc').includes(:author).limit(5)
   end
 
   private

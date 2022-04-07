@@ -1,9 +1,11 @@
 class PostsController < ApplicationController
+  load_and_authorize_resource
   before_action :current_user, only: [:create]
 
   def index
     @user = User.find(params[:user_id])
-    @posts = @user.posts.includes(:comments) # eager loading
+    # Eager loading
+    @posts = @user.posts.includes(:comments)
   end
 
   def show
@@ -27,6 +29,13 @@ class PostsController < ApplicationController
       render :new
       flash.now[:error] = 'Post not saved'
     end
+  end
+
+  def destroy
+    @post = Post.find(params[:id])
+    @post.destroy
+    flash[:success] = 'Post deleted successfully'
+    redirect_to "/users/#{params[:id]}"
   end
 
   private
