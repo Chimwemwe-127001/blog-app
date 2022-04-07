@@ -38,9 +38,16 @@
             Comments: <%= @post.Comments_Counter %>
         </div>
         <ul class="list-group list-group-flush">
-            <% @comments.each do |comment| %>
-                <li class="list-group-item ">
+            <% @comments.includes(:author).each do |comment| %>
+                <li class="list-group-item d-flex bd-highlight">
+                  <div class="p-2 w-100 bd-highlight">
                     <%= comment.author.Name %>: <%= comment.Text  %>
+                  </div>
+                  <% if can? :destroy, comment %>
+                    <div class="p-2 flex-shrink-1 bd-highlight">
+                      <%= button_to "Delete", post_comment_path(@post, comment), method: :delete, class: "btn btn-outline-danger" %>
+                    </div>
+                  <% end %>
                 </li>
             <% end %>
         </ul>

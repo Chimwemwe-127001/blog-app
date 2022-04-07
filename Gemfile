@@ -5,6 +5,8 @@ ruby '2.7.4'
 
 gem 'bullet'
 
+gem 'cancancan'
+
 gem 'devise'
 
 gem 'rails-controller-testing'
