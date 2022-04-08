@@ -10,16 +10,17 @@
   </symbol>
 </svg>
 
-<% flash.each do |type, msg| %>
-  <div class="alert alert-success d-flex align-items-center" style="max-width: 900px;" role="alert">
-    <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
-    <div>
-        <%= msg %>
-    </div>
-  </div>
-<% end %>
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
   <div class="card container" style="padding: 3rem; max-width: 700px; margin: 1rem auto;">
+  <% flash.each do |type, msg| %>
+  <div class="alert alert-warning d-flex align-items-center" role="alert">
+    <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Warning:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+    <div>
+        <%= msg %>
+        <%= render "devise/shared/error_messages", resource: resource %>
+    </div>
+  </div>
+ <% end %>
     <h2 class="text-center" style="margin: 0 0 1rem 0;">Log in</h2>
     <div class="mb-3">
       <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control', placeholder:'Email'  %>
