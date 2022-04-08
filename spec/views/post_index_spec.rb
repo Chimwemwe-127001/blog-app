@@ -2,7 +2,7 @@ require 'rails_helper'
 RSpec.describe 'On Post Index Page', type: :feature do
   before(:each) do
     visit user_session_path
-    @Chimwemwe Sinyinza = User.create!(Name: 'Chimwemwe',
+    @chimwemwe = User.create!(Name: 'Chimwemwe',
                               email: 'test@gmail.com',
                               Bio: 'developer',
                               password: 'password',
@@ -20,7 +20,7 @@ RSpec.describe 'On Post Index Page', type: :feature do
                                       Likes_Counter: 0)
     @post3 = @chimwemwe.posts.create!(Title: 'post 3', Text: 'My post 3', users_id: @chimwemwe.id, Comments_Counter: 0,
                                       Likes_Counter: 0)
-    @Ritta Sweta = User.create!(
+    @ritta = User.create!(
       Name: 'Ritta', Bio: 'developer', email: 'ritta@gmail.com',
       password: 'ritta1234', password_confirmation: 'ritta1234', confirmed_at: Time.now
     )

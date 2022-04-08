@@ -16,7 +16,7 @@ RSpec.describe 'On Post Index Page', type: :feature do
     click_button 'Log in'
     @post1 = @leo.posts.create!(Title: 'post 1', Text: 'My post 1', users_id: @leo.id, Comments_Counter: 0,
                                 Likes_Counter: 0)
-    @Fred = User.create!(
+    @fred = User.create!(
       Name: 'Fred', Bio: 'my bio', email: 'Fred@gmail.com',
       password: 'fred1234', password_confirmation: 'fred1234', confirmed_at: Time.now
     )
