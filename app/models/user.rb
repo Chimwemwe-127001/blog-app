@@ -6,6 +6,7 @@ class User < ApplicationRecord
   has_many :posts, foreign_key: 'users_id'
   has_many :comments, foreign_key: 'users_id'
   has_many :likes, foreign_key: 'users_id'
+  after_create :generate_api_token
   validates :Name, presence: true
   validates :Posts_Counter, numericality: { greater_than_or_equal_to: 0 }
   validates :password, presence: true, length: { minimum: 6 }
@@ -19,5 +20,10 @@ class User < ApplicationRecord
 
   def recent_posts
     posts.order('created_at DESC').limit(3)
+  end
+
+  def generate_api_token 
+    self.api_token = SecureRandom.hex(16)
+    save!
   end
 end
