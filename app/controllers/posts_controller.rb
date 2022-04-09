@@ -4,8 +4,8 @@ class PostsController < ApplicationController
 
   def index
     @user = User.find(params[:user_id])
-    # Eager loading
-    @posts = @user.posts.includes(:comments)
+    # avoid N+1 query
+    @posts = @user.posts
   end
 
   def show
