@@ -22,7 +22,7 @@ class User < ApplicationRecord
     posts.order('created_at DESC').limit(3)
   end
 
-  def generate_api_token 
+  def generate_api_token
     self.api_token = SecureRandom.hex(16)
     save!
   end
